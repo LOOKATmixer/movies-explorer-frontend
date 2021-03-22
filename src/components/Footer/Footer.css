@@ -27,6 +27,7 @@
 }
 
 .footer__copyright {
+  color: #fff;
   display: flex;
   align-self: center;
   font-weight: 400;
