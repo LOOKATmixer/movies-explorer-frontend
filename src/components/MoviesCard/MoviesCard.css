@@ -40,21 +40,26 @@
 }
 
 .card__like {
-  background: url(../../images/like.svg) no-repeat center;
-  width: 14px;
-  height: 12px;
+  background-color: #222222;
   border: none;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0 7px 0 0;
+  position: relative;
 }
 
-.card__like:hover {
+.card__icon {
+  display: none;
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  transition: linear 0.4s;
   cursor: pointer;
 }
 
-.card__like-active {
-  background: url(../../images/like-active.svg);
+.card:hover .card__icon {
+  display: block;
+}
+
+.card__icon:hover {
+  transform: scale(1.2);
 }
 
 @media screen and (max-width: 800px) {
