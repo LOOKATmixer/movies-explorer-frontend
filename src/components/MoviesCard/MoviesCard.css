@@ -1,0 +1,80 @@
+.card {
+  list-style: none;
+  padding: 0;
+}
+
+.card__image {
+  height: 203px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.card__container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: #222222;
+  border-radius: 0 0 10px 10px;
+}
+
+.card__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #fff;
+  max-width: 290px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.card__duration {
+  margin: 17px 0 0 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 10px;
+  color: #8b8b8b;
+}
+
+.card__like {
+  background-color: #222222;
+  border: none;
+  position: relative;
+}
+
+.card__icon {
+  display: none;
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  transition: linear 0.4s;
+  cursor: pointer;
+}
+
+.card:hover .card__icon {
+  display: block;
+}
+
+.card__icon:hover {
+  transform: scale(1.2);
+}
+
+@media screen and (max-width: 800px) {
+  .card__image {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .card__title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .card__image {
+    height: 168px;
+  }
+}
