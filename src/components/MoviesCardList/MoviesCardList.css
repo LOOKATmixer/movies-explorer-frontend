@@ -48,7 +48,7 @@
 }
 
 .movies__not-found {
-  display: none;
+  color: #fff;
   margin: 0 0 40px;
 }
 
