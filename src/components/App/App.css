@@ -1,6 +1,8 @@
 @import url('../../vendor/fonts/fonts.css');
 
 .page {
+  background-color: #202020;
+  height: 100vh;
   margin: 0 auto;
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
 }
