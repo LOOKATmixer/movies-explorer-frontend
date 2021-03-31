@@ -10,3 +10,16 @@
 button:active, button:focus {
   outline: none;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #202020 inset !important;
+    border-bottom: 1px #424242 solid;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+}

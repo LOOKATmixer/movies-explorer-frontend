@@ -8,6 +8,7 @@ function MoviesCardList({
   showMore,
   badMovieRequest,
   emptyMoviesList,
+  movieLike,
 }) {
   const { movieCards, showItems, addItems } = movies;
 
@@ -27,20 +28,20 @@ function MoviesCardList({
         <p className='movies__not-found'>Ничего не найдено</p>
       )}
       <ul className='movies__list'>
-      {movieCards
-          .map((movie, idx) => {
-            if (idx < showItems) {
-              return (
-                <MoviesCard key={movie.id}
-                            movie={movie} />
-              );
-            }
-            return null;
+        {movieCards.map((movie, idx) => {
+          if (idx < showItems) {
+            return (
+              <MoviesCard key={movie.id} movie={movie} movieLike={movieLike} />
+            );
+          }
+          return null;
         })}
       </ul>
       <button
         onClick={showMoreMovies}
-        className={cn("movies__button", {"movies__button_is-active" : (movieCards.length > showItems)})}
+        className={cn('movies__button', {
+          'movies__button_is-active': movieCards.length > showItems,
+        })}
         type='submit'
         name='more'
       >

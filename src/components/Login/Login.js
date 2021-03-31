@@ -3,8 +3,9 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import Form from '../Form/Form';
 import logo from '../../images/logo.svg';
+import useFormWithValidation from '../../utils/FormValidation';
 
-function Login() {
+function Login({ handleLogin }) {
   return (
     <section className='login'>
       <div className='login__container'>
@@ -13,13 +14,14 @@ function Login() {
         </Link>
         <h2 className='login__title'>Рады Видеть!</h2>
         <Form
+          handleAuth={handleLogin}
           onSubmit={{
             buttonText: 'Войти',
             promt: 'Ещё не зарегистрированы?',
             route: '/signup',
             linkText: 'Регистрация',
-          }}>
-            </Form>
+          }}
+        ></Form>
       </div>
     </section>
   );

@@ -34,7 +34,6 @@
 }
 
 .form__input-error {
-  display: none;
   align-self: flex-start;
   color: #ee3465;
   font-size: 10px;
@@ -48,20 +47,23 @@
   width: 100%;
   height: 45px;
   margin: 134px 0 16px;
-  border: solid 1px #4285f4;
+  border: solid 1px grey;
   border-radius: 3px;
-  background-color: #4285f4;
+  background-color: grey;
   color: #fff;
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
   outline: none;
-  cursor: pointer;
   transition: linear 0.4s;
 }
 
-.form__button:hover {
-  transform: scale(1.1);
+.auth__button-container_active {
+  background-color: #4285f4;
+}
+
+.auth__button-container_active:hover {
+  cursor: pointer;
 }
 
 .form__promt {

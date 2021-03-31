@@ -6,7 +6,7 @@ import moviesIconCard from '../../images/like-active.svg';
 import moviesSavedCardIcon from '../../images/close-card.svg';
 import saveCardIcon from '../../images/like.svg';
 
-function MoviesCard({ movie }) {
+function MoviesCard({ movie, movieLike }) {
   const { pathname } = useLocation();
   const isAdded = false; // Поменять на false для проверки
 
