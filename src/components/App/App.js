@@ -182,9 +182,9 @@ function App() {
             loggedIn={loggedIn}
             component={SavedMovies}
           />
-          <Route
+          <ProtectedRoute
             path='/profile'
-            loggedIn={false}
+            loggedIn={loggedIn}
             onUpdateUser={handleUpdateUser}
             onSignOut={onSignOut}
             component={Profile}
