@@ -46,7 +46,7 @@
   max-width: 396px;
   width: 100%;
   height: 45px;
-  margin: 134px 0 16px;
+  margin: 100px 0 16px;
   border: solid 1px grey;
   border-radius: 3px;
   background-color: grey;
@@ -58,16 +58,17 @@
   transition: linear 0.4s;
 }
 
-.auth__button-container_active {
+.form__button_active {
   background-color: #4285f4;
+  border: solid 1px #4285f4;
+
 }
 
-.auth__button-container_active:hover {
+.form__button_active:hover {
   cursor: pointer;
 }
 
 .form__promt {
-  margin: 0;
   color: #8b8b8b;
   font-size: 14px;
   font-weight: 400;
@@ -93,7 +94,6 @@
   }
 
   .form__button {
-    margin: 215px 0 16px;
     font-size: 12px;
     line-height: 14px;
   }

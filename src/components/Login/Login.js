@@ -3,7 +3,6 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import Form from '../Form/Form';
 import logo from '../../images/logo.svg';
-import useFormWithValidation from '../../utils/FormValidation';
 
 function Login({ handleLogin }) {
   return (
@@ -12,8 +11,9 @@ function Login({ handleLogin }) {
         <Link to='/'>
           <img className='login__logo' src={logo} alt='Логотип' />
         </Link>
-        <h2 className='login__title'>Рады Видеть!</h2>
+        <h2 className='login__title'>Рады видеть!</h2>
         <Form
+          link='signin'
           handleAuth={handleLogin}
           onSubmit={{
             buttonText: 'Войти',
@@ -21,7 +21,7 @@ function Login({ handleLogin }) {
             route: '/signup',
             linkText: 'Регистрация',
           }}
-        ></Form>
+        />
       </div>
     </section>
   );

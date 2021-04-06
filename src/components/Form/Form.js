@@ -4,22 +4,36 @@ import './Form.css';
 import { useFormWithValidation } from '../../utils/FormValidation';
 import cn from 'classnames';
 
-function Form({ onSubmit, children, handleAuth }) {
-  const {
-    values,
-    errors,
-    isValid,
-    handleChange,
-  } = useFormWithValidation({});
+function Form({ onSubmit, handleAuth, link }) {
+  const { values, errors, isValid, handleChange } = useFormWithValidation({});
 
   function handleSubmit(e) {
     e.preventDefault();
     handleAuth(values);
   }
-
   return (
     <form className='form' onSubmit={handleSubmit}>
-      {children}
+      {link === 'signup' && (
+        <>
+          <label className='form__label' htmlFor='Введите имя'>
+            Имя
+          </label>
+          <input
+            className='form__input'
+            id='name'
+            type='text'
+            name='name'
+            required
+            value={values.name}
+            onChange={handleChange}
+            minLength={2}
+            autoComplete='off'
+          />
+          {errors.name && (
+            <span className='form__input-error'>{errors.name}</span>
+          )}
+        </>
+      )}
       <label className='form__label' htmlFor='Введите почту'>
         E-mail
       </label>
@@ -33,7 +47,9 @@ function Form({ onSubmit, children, handleAuth }) {
         onChange={handleChange}
         autoComplete='off'
       />
-      {errors.email && <span className='form__input-error'>{errors.email}</span>}
+      {errors.email && (
+        <span className='form__input-error'>{errors.email}</span>
+      )}
 
       <label className='form__label' htmlFor='Введите пароль'>
         Пароль
@@ -44,6 +60,7 @@ function Form({ onSubmit, children, handleAuth }) {
         type='password'
         name='password'
         required
+        minLength='6'
         value={values.password}
         onChange={handleChange}
         autoComplete='off'

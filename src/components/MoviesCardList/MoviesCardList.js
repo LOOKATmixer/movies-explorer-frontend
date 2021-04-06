@@ -8,7 +8,11 @@ function MoviesCardList({
   showMore,
   badMovieRequest,
   emptyMoviesList,
-  movieLike,
+  onMovieLike,
+  savedList,
+  onMovieDelete,
+  isSaved,
+  requestStatus,
 }) {
   const { movieCards, showItems, addItems } = movies;
 
@@ -31,7 +35,15 @@ function MoviesCardList({
         {movieCards.map((movie, idx) => {
           if (idx < showItems) {
             return (
-              <MoviesCard key={movie.id} movie={movie} movieLike={movieLike} />
+              <MoviesCard
+                key={movie.id || movie._id}
+                movie={movie}
+                onMovieLike={onMovieLike}
+                savedList={savedList}
+                onMovieDelete={onMovieDelete}
+                isSaved={isSaved}
+                requestStatus={requestStatus}
+              />
             );
           }
           return null;

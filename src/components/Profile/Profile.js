@@ -6,22 +6,21 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/FormValidation';
 import cn from 'classnames';
 
-
-function Profile({ signOut, onUpdateUser }) {
+function Profile({ onSignOut, onUpdateUser, requestStatus }) {
   const currentUser = useContext(CurrentUserContext);
-  const { values, errors, isValid, handleChange } = useFormWithValidation();
+  const { values, errors, isValid, handleChange } = useFormWithValidation({
+    name: currentUser.name,
+    email: currentUser.email,
+  });
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onUpdateUser({
-      name: values.name || currentUser.name,
-      email: values.email || currentUser.email,
-    });
+    onUpdateUser(values);
   }
 
   return (
     <>
-      <Header loggedIn={true} background='dark' />
+      <Header background='dark' />
       <section className='profile'>
         <div className='profile__container'>
           <h2 className='profile__title'>Привет, {currentUser.name}!</h2>
@@ -38,12 +37,13 @@ function Profile({ signOut, onUpdateUser }) {
                 maxLength='30'
                 autoComplete='off'
                 onChange={handleChange}
-                defaultValue={currentUser.name}
+                value={values.name}
                 error={errors.name}
               />
-              
             </label>
-            {errors.name && <span className="profile__error">{errors.name}</span>}
+            {errors.name && (
+              <span className='profile__error'>{errors.name}</span>
+            )}
             <label className='profile__label' htmlFor='email'>
               Почта
               <input
@@ -55,19 +55,26 @@ function Profile({ signOut, onUpdateUser }) {
                 required
                 autoComplete='off'
                 onChange={handleChange}
-                defaultValue={currentUser.email}
+                value={values.email}
                 error={errors.email}
               />
-              
             </label>
-            {errors.email && <span className="profile__error">{errors.email}</span>}
-            <button className={cn("profile__button", {"profile__button_active" : isValid})} disabled={!isValid} type='submit'>
+            {errors.email && (
+              <span className='profile__error'>{errors.email}</span>
+            )}
+            <button
+              className={cn('profile__button', {
+                profile__button_active:
+                  isValid &&
+                  (values.name !== currentUser.name ||
+                    values.email !== currentUser.email),
+              })}
+              disabled={!isValid}
+              type='submit'
+            >
               Редактировать
             </button>
-            <Link to="/"
-              className='profile__logout'
-              onClick={signOut}
-            >
+            <Link to='/' className='profile__logout' onClick={onSignOut}>
               Выйти из аккаунта
             </Link>
           </form>

@@ -12,17 +12,27 @@ function Movies({
   showMore,
   badMovieRequest,
   emptyMoviesList,
+  isLiked,
+  onMovieLike,
+  savedList,
+  onMovieDelete,
+  requestStatus,
 }) {
   return (
     <>
-      <Header loggedIn={true} background='dark' />
-      <SearchForm handleSeachMovie={handleSeachMovie} />
+      <Header background='dark' />
+      <SearchForm handleSeachMovie={handleSeachMovie} link='movies' />
       {contentLoading && <Preloader />}
       <MoviesCardList
         movies={movies}
         badMovieRequest={badMovieRequest}
         emptyMoviesList={emptyMoviesList}
         showMore={showMore}
+        isLiked={isLiked}
+        onMovieLike={onMovieLike}
+        savedList={savedList}
+        onMovieDelete={onMovieDelete}
+        requestStatus={requestStatus}
       />
       <Footer />
     </>

@@ -4,15 +4,15 @@ class Api {
     this.headers = config.headers;
   }
 
-  register(password, email, name) {
+  register(name, email, password) {
     return fetch(`${this.url}/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ password, email, name }),
+      body: JSON.stringify({ name, email, password }),
     }).then(handleOriginalResponse);
-  };
+  }
 
   authorize(email, password) {
     return fetch(`${this.url}/signin`, {
@@ -22,20 +22,21 @@ class Api {
       },
       body: JSON.stringify({ email, password }),
     }).then(handleOriginalResponse);
-  };
+  }
 
   checkToken(token) {
     return fetch(`${this.url}/users/me`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     }).then(handleOriginalResponse);
-  };
+  }
 
-  getUserInfo(token) {
+  getUserInfo() {
+    const token = localStorage.getItem('token');
     return fetch(`${this.url}/users/me`, {
       method: 'GET',
       headers: {
@@ -47,9 +48,14 @@ class Api {
   }
 
   changeUserInfo({ name, email }) {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this.url}/users/me`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name,
         email,
@@ -57,30 +63,52 @@ class Api {
     }).then(handleOriginalResponse);
   }
 
-  addNewCard(movie) {
+  addNewCard(movie, token) {
+    const {
+      country,
+      director,
+      duration,
+      year,
+      description,
+      nameRU,
+      nameEN,
+      id,
+    } = movie;
+    const image = `https://api.nomoreparties.co${movie.image.url}`;
+    const thumbnail = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`;
+    const trailer = movie.trailerLink;
+    const movieId = id;
     return fetch(`${this.url}/movies`, {
       method: 'POST',
-      headers: this.headers,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
-        country: movie.country,
-        director: movie.director,
-        duration: movie.duration,
-        year: movie.year,
-        description: movie.description,
-        image: `https://api.nomoreparties.co${movie.image.url}`,
-        thumbnail: `https://api.nomoreparties.co${movie.image.url}`,
-        trailer: movie.trailerLink,
-        movieId: movie.id,
-        nameRU: movie.nameRU,
-        nameEN: movie.nameEN,
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailer,
+        nameRU,
+        nameEN,
+        thumbnail,
+        movieId,
       }),
     }).then(handleOriginalResponse);
   }
 
   deleteMovie(movieId) {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this.url}/movies/${movieId}`, {
       method: 'DELETE',
-      headers: this.headers,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
     }).then(handleOriginalResponse);
   }
 
@@ -101,22 +129,6 @@ const handleOriginalResponse = (res) => {
     return Promise.reject(`Err: ${res.status}`);
   }
   return res.json();
-};
-
-export const getErrors = (err) => {
-  if (err === "Ошибка: 400" || err.message === "Ошибка: 400")
-    return "Неверно заполнено одно из полей";
-  if (err === "Ошибка: 401" || err.message === "Ошибка: 401")
-    return "Неправильные почта или пароль";
-  if (err === "Ошибка: 403" || err.message === "Ошибка: 403")
-    return "Вы не можете удалить фильм";
-  if (err === "Ошибка: 404" || err.message === "Ошибка: 404")
-    return "Данные не найдены";
-  if (err === "Ошибка: 409" || err.message === "Ошибка: 409")
-    return "Пользователь с таким email уже существует";
-  if (err === "Ошибка: 429" || err.message === "Ошибка: 429")
-    return "Слишком много запросов. Попробуйте позже";
-  return "Ошибка сервера";
 };
 
 export const mainApi = new Api({

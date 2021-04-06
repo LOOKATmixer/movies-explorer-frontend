@@ -25,6 +25,7 @@
 }
 
 .techs__list {
+  color: #fff;
   display: grid;
   grid-template-columns: repeat(7, 90px);
   justify-content: center;
@@ -52,13 +53,16 @@
   text-decoration: none;
 }
 
+.techs__item-title {
+  color: #fff;
+}
+
 .techs__list-item:hover {
   color: black;
   background-color: #2be080;
 }
 
 .techs__list-link:visited {
-  color: #fff;
   text-decoration: none;
 }
 

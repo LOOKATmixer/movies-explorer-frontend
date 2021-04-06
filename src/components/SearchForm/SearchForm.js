@@ -1,19 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import './SearchForm.css';
 import FilterCheckBox from '../FilterCheckBox/FilterCheckBox';
+import { useDebouncedCallback } from 'use-debounce';
 
-function SearchForm({ handleSeachMovie }) {
+const DEBOUNCE_DELAY = 1000;
+
+function SearchForm({ handleSeachMovie, link }) {
   const [searchString, setSearchString] = useState('');
+  const [isShort, setIsShort] = useState(false);
+  const debouncedSetFilter = useDebouncedCallback(
+    (value, checked) => {
+        handleSeachMovie(value, checked);
+    }, DEBOUNCE_DELAY
+  );
 
-  const onChangeSearch = (e) => {
-    const { value } = e.target;
+  const onChangeSearch = useCallback((value, checked) => {
     setSearchString(value);
-  };
+    debouncedSetFilter(value, checked);
+  }, [debouncedSetFilter]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    handleSeachMovie(searchString);
-  };
+    handleSeachMovie(searchString, isShort);
+  }
+
+  const handleUpdateCheckbox = () => {
+    const invertedValue = !isShort;
+    setIsShort(invertedValue);
+    onChangeSearch(searchString, invertedValue);
+  }
 
   return (
     <section className='search'>
@@ -22,17 +37,23 @@ function SearchForm({ handleSeachMovie }) {
           <div className='search__wrap'>
             <input
               value={searchString}
-              onChange={onChangeSearch}
-              placeholder='Фильм'
+              onChange={({ target: { value } }) =>
+                onChangeSearch(value, isShort)
+              }
+              placeholder={link === 'movies' ? 'Фильмы' : 'Сохранённые фильмы'}
               className='search__input'
               required
+              minLength='1'
             />
             <button type='submit' className='search__submit'>
               Найти
             </button>
           </div>
         </form>
-        <FilterCheckBox />
+        <FilterCheckBox
+          isShort={isShort}
+          handleUpdateCheckbox={handleUpdateCheckbox}
+        />
       </div>
     </section>
   );

@@ -29,12 +29,14 @@
 }
 
 .about-me__contacts {
+  color: #fff;
   display: flex;
   padding: 0;
   margin: 100px 0 0;
 }
 
 .about-me__contact-link {
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
