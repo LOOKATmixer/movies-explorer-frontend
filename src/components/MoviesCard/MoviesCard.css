@@ -40,26 +40,29 @@
 }
 
 .card__like {
-  background-color: #222222;
+  width: 18px;
+  height: 18px;
+  background: url('../../images/like.svg') no-repeat center;
   border: none;
-  position: relative;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.card__icon {
-  display: none;
-  position: absolute;
-  right: 14px;
-  top: 14px;
-  transition: linear 0.4s;
+.card__like-active {
+  background-image: url('../../images/like-active.svg');
+}
+
+.card__like-delete {
+  background-image: url('../../images/close-card.svg');
+}
+
+.card__like:hover {
   cursor: pointer;
 }
 
-.card:hover .card__icon {
-  display: block;
-}
-
-.card__icon:hover {
-  transform: scale(1.2);
+.card__like:focus {
+  outline-style: none;
 }
 
 @media screen and (max-width: 800px) {

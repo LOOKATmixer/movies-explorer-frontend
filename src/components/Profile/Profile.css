@@ -28,7 +28,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 18px;
 }
 
 .profile__label {
@@ -38,13 +37,12 @@
   font-size: 11px;
   font-weight: 500;
   line-height: 13px;
-  border-bottom: solid 1px #424242;
-  padding-bottom: 16px;
+  border-top: solid 1px #424242;
+  padding: 16px 0;
 }
 
-.profile__label:nth-last-of-type(1) {
-  border-bottom: none;
-  padding: 0;
+.profile__label:first-of-type {
+  border-top: none;
 }
 
 .profile__input {
@@ -59,22 +57,42 @@
   line-height: 13px;
 }
 
+.profile__error {
+  align-self: flex-start;
+  color: #ee3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  margin-top: -13px;
+}
+
 .profile__button {
-  margin-top: 200px;
+  margin: 200px 0 20px 0;
   border: none;
   background-color: #202020;
-  color: #fff;
+  color: gray;
   font-size: 13px;
   font-weight: 400;
   line-height: 15px;
 }
 
-.profile__button:last-child {
-  margin: 0px;
+.profile__button_active {
+  color: #fff;
 }
 
-.profile__button-logout {
+.profile__button_active:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.profile__logout {
+  margin: 0px;
   color: #ee3465;
+  border: none;
+  background-color: #202020;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15px;
 }
 
 @media screen and (max-width: 600px) {

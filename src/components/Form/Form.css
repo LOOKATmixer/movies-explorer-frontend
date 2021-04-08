@@ -34,7 +34,6 @@
 }
 
 .form__input-error {
-  display: none;
   align-self: flex-start;
   color: #ee3465;
   font-size: 10px;
@@ -47,25 +46,29 @@
   max-width: 396px;
   width: 100%;
   height: 45px;
-  margin: 134px 0 16px;
-  border: solid 1px #4285f4;
+  margin: 100px 0 16px;
+  border: solid 1px grey;
   border-radius: 3px;
-  background-color: #4285f4;
+  background-color: grey;
   color: #fff;
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
   outline: none;
-  cursor: pointer;
   transition: linear 0.4s;
 }
 
-.form__button:hover {
-  transform: scale(1.1);
+.form__button_active {
+  background-color: #4285f4;
+  border: solid 1px #4285f4;
+
+}
+
+.form__button_active:hover {
+  cursor: pointer;
 }
 
 .form__promt {
-  margin: 0;
   color: #8b8b8b;
   font-size: 14px;
   font-weight: 400;
@@ -91,7 +94,6 @@
   }
 
   .form__button {
-    margin: 215px 0 16px;
     font-size: 12px;
     line-height: 14px;
   }

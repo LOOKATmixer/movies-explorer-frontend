@@ -20,6 +20,7 @@
 }
 
 .movies__button {
+  display: none;
   max-width: 320px;
   width: 100%;
   height: 36px;
@@ -37,13 +38,17 @@
   transition: linear 0.4s;
 }
 
+.movies__button_is-active {
+  display: inline;
+}
+
 .movies__button:hover {
   border: solid 2px #fff;
   transform: scale(1.1);
 }
 
 .movies__not-found {
-  display: none;
+  color: #fff;
   margin: 0 0 40px;
 }
 

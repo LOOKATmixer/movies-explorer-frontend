@@ -48,6 +48,7 @@
 }
 
 .portfolio__text {
+  color: #fff;
   margin: 0;
   letter-spacing: -0.04em;
   transition: linear 0.4s;
