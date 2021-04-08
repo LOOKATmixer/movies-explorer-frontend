@@ -24,18 +24,18 @@ function MoviesCard({ movie, onMovieLike, savedList, onMovieDelete, isSaved }) {
   };
 
   useEffect(() => {
-    setIsLiked(Object.values(savedList).some((i) => i.movieId === movie.id));
+    setIsLiked(savedList.some((i) => i.movieId === movie.id));
   }, [movie.id, savedList]);
 
   const handleLikeClick = () => {
     if (isLiked) {
-      onMovieDelete(Object.entries(savedList).find((i) => i.movieId === movie.id));
+      onMovieDelete(savedList.find((i) => i.movieId === movie.id));
     } else if (isSaved) {
       onMovieDelete(movie);
     } else {
       onMovieLike(movie);
     }
-    setIsLiked(Object.values(savedList).some((i) => i.movieId === movie.id));
+    setIsLiked(savedList.some((i) => i.movieId === movie.id));
   };
 
   return (

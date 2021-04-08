@@ -15,7 +15,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import InfoToolTip from '../InfoToolTip/InfoToolTip';
+import InfoToolTip from '../InfoToolTip/infoToolTip';
 
 const ListTypes = {
   Filtered: 'Filtered',
@@ -372,7 +372,7 @@ function App() {
             emptyMoviesList={emptyMoviesList}
             onMovieLike={handleMovieStatus}
             onMovieDelete={handleMovieDelete}
-            savedList={savedList}
+            savedList={savedList.movieCards}
             token={token}
             requestStatus={requestStatus}
           />

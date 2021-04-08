@@ -1,4 +1,4 @@
-import './InfoToolTip.css'
+import './infoToolTip.css'
 
 const InfoToolTip = ({ onClose, isOpen, requestStatus }) => {
   return (
